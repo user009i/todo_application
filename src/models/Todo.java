@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -13,23 +15,27 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
         name = "getAllTodos",
-        query = "SELECT m FROM Todo AS m ORDER BY m.create_at DESC"
+        query = "SELECT m FROM Todo AS m ORDER BY m.deadline_at"
     )
 })
 @Table(name = "Todos")
 public class Todo {
     @Id
     @Column(name = "todo_id")
-    private String todo_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long todo_id;
 
     @Column(name = "content")
     private String content;
 
-    @Column(name = "done")
-    private Boolean done;
+    @Column(name = "status")
+    private Integer status;
 
-    @Column(name = "user_id")
-    private String user_id;
+    @Column(name = "creator")
+    private String creator;
+
+    @Column(name = "deadline_at")
+    private Timestamp deadline_at;
 
     @Column(name = "create_at")
     private Timestamp create_at;
@@ -37,11 +43,11 @@ public class Todo {
     @Column(name = "done_at")
     private Timestamp done_at;
 
-    public String getTodo_id() {
+    public Long getTodo_id() {
         return todo_id;
     }
 
-    public void setTodo_id(String todo_id) {
+    public void setTodo_id(Long todo_id) {
         this.todo_id = todo_id;
     }
 
@@ -53,20 +59,27 @@ public class Todo {
         this.content = content;
     }
 
-    public Boolean getDone() {
-        return done;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+    public Timestamp getDeadline_at() {
+        return deadline_at;
+    }
+
+    public void setDeadline_at(Timestamp deadline_at) {
+        this.deadline_at = deadline_at;
     }
 
     public Timestamp getCreate_at() {
@@ -84,5 +97,7 @@ public class Todo {
     public void setDone_at(Timestamp done_at) {
         this.done_at = done_at;
     }
+
+
 
 }

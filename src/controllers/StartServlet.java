@@ -28,8 +28,8 @@ public class StartServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //response.sendRedirect(request.getContextPath() + "/WEB-INF/views/todos/start.jsp");
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
+        //request.getSession().removeAttribute("flush");
         rd.forward(request, response);
     }
 

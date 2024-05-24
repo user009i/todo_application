@@ -3,6 +3,11 @@
     <persistence-unit name="todo_application" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>models.User</class>
+        <class>models.Todo</class>
+        <class>models.Project</class>
+        <class>models.Projects_users</class>
+        <class>models.Todos_users</class>
+        <class>models.Todos_projects</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/todo_application?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true"/>
