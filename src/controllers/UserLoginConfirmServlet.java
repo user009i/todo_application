@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -51,13 +52,13 @@ public class UserLoginConfirmServlet extends HttpServlet {
 
             try {
                 MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
-                String user_password_enc = new String(sha3_256.digest(user_password.getBytes()));
+                byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
 
-                if(u.getUser_password().equals(user_password_enc)) {
+                if(Arrays.equals(u.getUser_password(), user_password_enc)) {
                     request.getSession().setAttribute("user", u);
                     request.setAttribute("_token", request.getSession().getId());
 
-                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todo_application/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
                     rd.forward(request, response);
                 }
                 else {
@@ -70,6 +71,10 @@ public class UserLoginConfirmServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/start");
             }
 
+        }
+        else {
+            request.getSession().setAttribute("flush", "ログインページからアクセスしてください");
+            response.sendRedirect(request.getContextPath() + "/login");
         }
     }
 

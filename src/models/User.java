@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 
-@Table(name = "Todos")
+@Table(name = "Users")
 public class User {
     @Id
     @Column(name = "user_id")
@@ -17,7 +17,7 @@ public class User {
     private String user_name;
 
     @Column(name = "user_password", length = 255, nullable = false)
-    private String user_password;
+    private byte[] user_password;
 
     public String getUser_id() {
         return user_id;
@@ -35,12 +35,13 @@ public class User {
         this.user_name = user_name;
     }
 
-    public String getUser_password() {
+    public byte[] getUser_password() {
         return user_password;
     }
 
-    public void setUser_password(String user_password) {
+    public void setUser_password(byte[] user_password) {
         this.user_password = user_password;
     }
+
 
 }

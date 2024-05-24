@@ -38,48 +38,56 @@ public class UserCreateConfirmServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
+        //String _token = request.getParameter("_token");
+        //if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             // 該当のIDのメッセージ1件のみをデータベースから取得
             User u = em.find(User.class, request.getParameter("user_id"));
 
-            em.close();
-
-            if(u.getUser_id().equals(null)) {
-
-            }
-            else {
-                request.getSession().setAttribute("flush", "このユーザIDは既に使用されています");
+            if(u != null) {
+                request.setAttribute("flush", "このユーザIDは既に使用されています");
                 response.sendRedirect(request.getContextPath() + "/signup");
             }
 
+            String user_name = request.getParameter("user_name");
             String user_id = request.getParameter("user_id");
             String user_password = request.getParameter("user_password");
 
             try {
                 MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
-                String user_password_enc = new String(sha3_256.digest(user_password.getBytes()));
+                byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
 
-                if(u.getUser_password().equals(user_password_enc)) {
-                    request.getSession().setAttribute("user", u);
-                    request.setAttribute("_token", request.getSession().getId());
+                em.getTransaction().begin();
 
-                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todo_application/index.jsp");
-                    rd.forward(request, response);
-                }
-                else {
-                    request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
-                    response.sendRedirect(request.getContextPath() + "/login");
-                }
+                User us = new User();
+                us.setUser_name(user_name);
+                us.setUser_id(user_id);
+                us.setUser_password(user_password_enc);
+
+                em.persist(us);
+                em.getTransaction().commit();
+                em.close();
+
             }
             catch(NoSuchAlgorithmException e){
-                request.getSession().setAttribute("flush", "エラーが発生しました");
+                em.close();
+                request.setAttribute("flush", "エラーが発生しました");
                 response.sendRedirect(request.getContextPath() + "/start");
             }
 
-        }
+            request.getSession().setAttribute("user_name", user_name);
+
+            request.setAttribute("_token", request.getSession().getId());
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
+            rd.forward(request, response);
+
+        //}
+        /*else {
+            request.getSession().setAttribute("flush", "アカウント作成ページからアクセスしてください");
+            response.sendRedirect(request.getContextPath() + "/start");
+        }*/
     }
 
 }

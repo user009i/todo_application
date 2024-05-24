@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class StartServlet
+ * Servlet implementation class NewAccontServlet
  */
-@WebServlet("/start")
-public class StartServlet extends HttpServlet {
+@WebServlet("/createTodoForm")
+public class CreateTodoFormServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StartServlet() {
+    public CreateTodoFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +28,7 @@ public class StartServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
-        //request.getSession().removeAttribute("flush");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/new.jsp");
         rd.forward(request, response);
     }
-
 }

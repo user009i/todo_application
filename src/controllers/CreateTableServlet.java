@@ -1,24 +1,29 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Todo;
+import utils.DBUtil;
+
 /**
- * Servlet implementation class NewAccontServlet
+ * Servlet implementation class CreateTableServlet
  */
-@WebServlet("/newAccount")
-public class NewAccontServlet extends HttpServlet {
+@WebServlet("/createTable")
+public class CreateTableServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewAccontServlet() {
+    public CreateTableServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,6 +32,11 @@ public class NewAccontServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/new_account.jsp");  //path未定
+        EntityManager em = DBUtil.createEntityManager();
+
+        List<Todo> todos = em.createNamedQuery("getAllTodos", Todo.class).getResultList();
+        response.getWriter().append(Integer.valueOf(todos.size()).toString());
+
+        em.close();
     }
 }
