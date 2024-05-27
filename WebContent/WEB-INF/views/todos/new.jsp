@@ -16,6 +16,7 @@
         <div id="wrapper">
             <div id="header">
                 <h1>TODO List 共有アプリケーション</h1>
+                <a href="${pageContext.request.contextPath}/index" style="position: absolute; right: 0; bottom: 0;">戻る</a>
             </div>
             <div id="content">
                 <form action="${pageContext.request.contextPath}/createTodo" method="post">

@@ -16,6 +16,7 @@
         <div id="loginPage">
             <div id="header">
                 <h1>ログイン画面</h1>
+                <a href="${pageContext.request.contextPath}/start" style="position: absolute; right: 0; bottom: 0;">戻る</a>
             </div>
             <div id="content">
                 <form action="${pageContext.request.contextPath}/userLoginConfirm" method="post" class="login-form">

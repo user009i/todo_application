@@ -16,22 +16,16 @@
         <div id="wrapper">
             <div id="header">
                 <h1>TODO List 共有アプリケーション</h1>
+                <form action="${pageContext.request.contextPath}/logout" method="post" style="position: absolute; right: 0; top: 0;">
+                    <input type="submit" value="ログアウト">
+                </form>
             </div>
             <div id="content">
-                <ol>
-                    <c:forEach var="todo" items="${todos}">
-                        <li>
-                            内容：<c:out value="${todo.content}"></c:out>
-                            期限：<c:out value="${todo.deadline_at}"></c:out>
-                            作成者：<c:out value="${todo.creator}"></c:out>
-                        </li>
-                    </c:forEach>
-               </ol>
+                ${param.content}
                 <button onclick="location.href='${pageContext.request.contextPath}/createTodoForm'">Todo作成</button>
             </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
-
             </div>
         </div>
     </body>

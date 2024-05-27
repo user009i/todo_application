@@ -47,41 +47,45 @@ public class UserCreateConfirmServlet extends HttpServlet {
 
             if(u != null) {
                 request.setAttribute("flush", "このユーザIDは既に使用されています");
-                response.sendRedirect(request.getContextPath() + "/signup");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/signup.jsp");
+                rd.forward(request, response);
             }
 
-            String user_name = request.getParameter("user_name");
-            String user_id = request.getParameter("user_id");
-            String user_password = request.getParameter("user_password");
+            else {
+                String user_name = request.getParameter("user_name");
+                String user_id = request.getParameter("user_id");
+                String user_password = request.getParameter("user_password");
 
-            try {
-                MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
-                byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
+                try {
+                    MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
+                    byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
 
-                em.getTransaction().begin();
+                    em.getTransaction().begin();
 
-                User us = new User();
-                us.setUser_name(user_name);
-                us.setUser_id(user_id);
-                us.setUser_password(user_password_enc);
+                    User us = new User();
+                    us.setUser_name(user_name);
+                    us.setUser_id(user_id);
+                    us.setUser_password(user_password_enc);
 
-                em.persist(us);
-                em.getTransaction().commit();
-                em.close();
+                    em.persist(us);
+                    em.getTransaction().commit();
+                    em.close();
 
+                }
+                catch(NoSuchAlgorithmException e){
+                    em.close();
+                    request.setAttribute("flush", "エラーが発生しました");
+                    response.sendRedirect(request.getContextPath() + "/start");
+                }
+
+                request.getSession().setAttribute("user_name", user_name);
+
+                request.setAttribute("_token", request.getSession().getId());
+
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
+                rd.forward(request, response);
             }
-            catch(NoSuchAlgorithmException e){
-                em.close();
-                request.setAttribute("flush", "エラーが発生しました");
-                response.sendRedirect(request.getContextPath() + "/start");
-            }
 
-            request.getSession().setAttribute("user_name", user_name);
-
-            request.setAttribute("_token", request.getSession().getId());
-
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
-            rd.forward(request, response);
 
         //}
         /*else {

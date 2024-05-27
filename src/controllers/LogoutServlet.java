@@ -10,28 +10,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class StartServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/start")
-public class StartServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StartServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
+
+        request.getSession().setAttribute("flush", "ログアウトしました");
+        request.getSession().removeAttribute("user_name");
+        request.getSession().removeAttribute("user_id");
+        request.getSession().removeAttribute("user_password");
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
         rd.forward(request, response);
     }

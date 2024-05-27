@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import javax.persistence.EntityManager;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,11 +54,10 @@ public class UserLoginConfirmServlet extends HttpServlet {
                 byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
 
                 if(Arrays.equals(u.getUser_password(), user_password_enc)) {
-                    request.getSession().setAttribute("user", u);
+                    request.getSession().setAttribute("user_name", u.getUser_name());
                     request.setAttribute("_token", request.getSession().getId());
 
-                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
-                    rd.forward(request, response);
+                    response.sendRedirect(request.getContextPath() + "/index");
                 }
                 else {
                     request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");

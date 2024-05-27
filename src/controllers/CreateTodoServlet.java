@@ -48,7 +48,7 @@ public class CreateTodoServlet extends HttpServlet {
                 int status = 0;
                 t.setStatus(status);
 
-                String creator = request.getParameter("user_name");
+                String creator = (String)request.getSession().getAttribute("user_name");
                 t.setCreator(creator);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
