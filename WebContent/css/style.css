@@ -91,6 +91,18 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+#header a,
+#header form {
+    position: absolute;  /* 追加：絶対位置指定 */
+    bottom: 0;
+    left: 0;
+    margin-left: 10px;  /* 追加：左端からのマージン */
+}
+
+#header form {
+    margin-left: 60px;  /* 追加：「戻る」ボタンからのマージン */
+}
+
 #content {
     background-color: #fff;
     padding: 20px;

@@ -28,8 +28,11 @@ public class StartServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
-        //request.getSession().removeAttribute("flush");
         rd.forward(request, response);
     }
 
