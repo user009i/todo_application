@@ -1,28 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <title>メイン画面</title>
-        <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+        <link rel="stylesheet" href="style.css">
     </head>
-    <c:if test="${flush != null}">
-            <div id="flush_message">
-                <c:out value="${flush}"></c:out>
-            </div>
-    </c:if>
     <body>
         <div id="wrapper">
             <div id="header">
                 <h1>TODO List 共有アプリケーション</h1>
-                <form action="${pageContext.request.contextPath}/logout" method="post" style="position: absolute; right: 0; top: 0;">
+                <form action="logout" method="post" style="position: absolute; right: 0; top: 0;">
                     <input type="submit" value="ログアウト">
                 </form>
+                <button onclick="location.href='project_join.jsp'">プロジェクト参加</button>
+                <button onclick="location.href='project_new.jsp'">プロジェクト作成</button>
             </div>
             <div id="content">
-                ${param.content}
-                <button onclick="location.href='${pageContext.request.contextPath}/createTodoForm'">Todo作成</button>
+                <ol>
+                    <c:forEach var="todo" items="${todos}">
+                        <li>
+                            内容: ${todo.content} <br/>
+                            締め切り: ${todo.deadline_at} <br/>
+                            作成者: ${todo.creator} <br/>
+                            状況: <c:choose>
+                                    <c:when test="${todo.status == 0}">未着手</c:when>
+                                    <c:when test="${todo.status == 1}">作業中</c:when>
+                                    <c:otherwise>完了</c:otherwise>
+                                  </c:choose>
+                        </li>
+                    </c:forEach>
+                </ol>
+                <button onclick="location.href='new.jsp'">タスクを作成する</button>
             </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
