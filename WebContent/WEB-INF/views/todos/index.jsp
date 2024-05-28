@@ -21,7 +21,23 @@
                 </form>
             </div>
             <div id="content">
-                ${param.content}
+                <ol>
+                    <c:forEach var="todo" items="${todos}">
+                        <li>
+                            内容：<c:out value="${todo.content}"></c:out>
+                            期限：<c:out value="${todo.deadline_at}"></c:out>
+                            作成者：<c:out value="${todo.creator}"></c:out>
+                            参加者：
+                                <ul>
+                                    <c:forEach var="todo" items="${todo}">
+                                       <li>
+                                            <c:out value="${todo.project}"></c:out>
+                                       </li>
+                                    </c:forEach>
+                                </ul>
+                        </li>
+                    </c:forEach>
+                </ol>
                 <button onclick="location.href='${pageContext.request.contextPath}/createTodoForm'">Todo作成</button>
             </div>
             <div id="footer">

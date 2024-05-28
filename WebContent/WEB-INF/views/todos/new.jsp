@@ -22,7 +22,7 @@
                 <form action="${pageContext.request.contextPath}/createTodo" method="post">
                     タスク名: <input type="text" name="content"><br>
                     いつまでに: <input type="date" name="deadline_at"><br>
-                    <%-- 誰と: <input type="text" name="joined_user"><br> --%>
+                    プロジェクトID: <input type="text" name="project_id"><br>
                     <input type="submit" value="作成する">
                 </form>
             </div>
