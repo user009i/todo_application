@@ -5,10 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllMyProjects_id",
+        query = "SELECT p FROM Projects_users AS p WHERE p.user_id = :user_id"
+    )
+})
 @Table(name = "Projects_users")
 public class Projects_users {
     @Id

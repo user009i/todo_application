@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Todo;
+import models.Todos_projects;
 import utils.DBUtil;
 
 /**
@@ -59,10 +60,41 @@ public class CreateTodoServlet extends HttpServlet {
                 Timestamp current_time= new Timestamp(System.currentTimeMillis());
                 t.setCreate_at(current_time);
 
-
                 em.getTransaction().begin();
                 em.persist(t);
                 em.getTransaction().commit();
+
+
+                String project_id = request.getParameter("project_id");
+                if(project_id != null && !(project_id.equals(""))) {
+                   t.setIn_project(true);
+
+                   em.getTransaction().begin();
+                   em.persist(t);
+                   em.getTransaction().commit();
+
+                   Todos_projects tp = new Todos_projects();
+
+
+                   Long todo_id = t.getTodo_id();
+                   tp.setTodo_id(todo_id);
+
+                   tp.setProject_id(project_id);
+
+                   em.getTransaction().begin();
+                   em.persist(tp);
+                   em.getTransaction().commit();
+
+                }
+                else {
+                    t.setIn_project(false);
+
+                    em.getTransaction().begin();
+                    em.persist(t);
+                    em.getTransaction().commit();
+                }
+
+
                 request.getSession().setAttribute("flush", "Todoの登録が完了しました。");
                 em.close();
 

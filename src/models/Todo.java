@@ -14,10 +14,15 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-        name = "getAllTodos",
-        query = "SELECT m FROM Todo AS m ORDER BY m.deadline_at"
+        name = "getAllNotInProjectTodos",
+        query = "SELECT t FROM Todo AS t WHERE t.in_project = false"
+    ),
+    @NamedQuery(
+            name = "getAllMyTodos",
+            query = "SELECT t FROM Todo AS t WHERE t.creator = :user_id"
     )
 })
+
 @Table(name = "Todos")
 public class Todo {
     @Id
@@ -42,6 +47,9 @@ public class Todo {
 
     @Column(name = "done_at")
     private Timestamp done_at;
+
+    @Column(name = "in_project")
+    private Boolean in_project;
 
     public Long getTodo_id() {
         return todo_id;
@@ -96,6 +104,14 @@ public class Todo {
 
     public void setDone_at(Timestamp done_at) {
         this.done_at = done_at;
+    }
+
+    public Boolean getIn_project() {
+        return in_project;
+    }
+
+    public void setIn_project(Boolean in_project) {
+        this.in_project = in_project;
     }
 
 

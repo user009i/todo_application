@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Projects_users;
 import models.Todo;
+import models.Todos_projects;
 import utils.DBUtil;
 
 /**
@@ -35,7 +38,31 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<Todo> todos = em.createNamedQuery("getAllTodos", Todo.class).getResultList();
+        String user_id = (String)request.getSession().getAttribute("user_id");
+        List<Projects_users> all_projects_id = em.createNamedQuery("getAllMyProjects_id", Projects_users.class).setParameter("user_id", user_id).getResultList();
+
+        List<Todo> all_todos_in_project = new ArrayList<Todo>();
+        for(Projects_users pid : all_projects_id) {
+            List<Todos_projects> todos_in_project = em.createNamedQuery("getAllInTheProjectTodos", Todos_projects.class).setParameter("project_id", pid.getProject_id()).getResultList();
+
+            for(Todos_projects tp : todos_in_project) {
+                Todo t = em.find(Todo.class, tp.getTodo_id());
+                all_todos_in_project.add(t);
+            }
+        }
+
+        List<Todo> all_todos_not_in_project = em.createNamedQuery("getAllMyTodos", Todo.class).setParameter("user_id", user_id).getResultList();
+
+        List<Todo> todos = new ArrayList<Todo>();
+        for(Todo t : all_todos_in_project) {
+            todos.add(t);
+        }
+        for(Todo t : all_todos_not_in_project) {
+            todos.add(t);
+        }
+
+        //tのソート実装
+        todos.sort((Todo a, Todo b) -> a.getDeadline_at().compareTo(b.getDeadline_at()));
 
         em.close();
 
