@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,8 +37,8 @@ public class LogoutServlet extends HttpServlet {
         request.getSession().removeAttribute("user_id");
         request.getSession().removeAttribute("user_password");
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
-        rd.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/start");
+
     }
 
 }

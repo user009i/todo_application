@@ -54,6 +54,8 @@ public class UserLoginConfirmServlet extends HttpServlet {
                 byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
 
                 if(Arrays.equals(u.getUser_password(), user_password_enc)) {
+                    request.getSession().setAttribute("user_id", u.getUser_id());
+                    request.getSession().setAttribute("user_password", u.getUser_password());
                     request.getSession().setAttribute("user_name", u.getUser_name());
                     request.setAttribute("_token", request.getSession().getId());
 

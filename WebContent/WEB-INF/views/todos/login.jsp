@@ -27,7 +27,7 @@
                     <input type="password" id="user_password" name="user_password" value="${user.user_password}"><br>
 
                     <input type="hidden" name="_token" value="${_token}" />
-                    <input type="submit" value="ログイン" class="login-button">
+                    <button type="submit" class="login-button">ログイン</button>
                 </form>
             </div>
             <div id="footer">

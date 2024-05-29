@@ -45,7 +45,7 @@ public class ProjectCreateConfirmServlet extends HttpServlet {
             Project p = em.find(Project.class, request.getParameter("project_id"));
 
             if(p != null) {
-                request.setAttribute("flush", "このユーザIDは既に使用されています");
+                request.setAttribute("flush", "このプロジェクトIDは既に使用されています");
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/project.jsp");
                 rd.forward(request, response);
             }
@@ -67,7 +67,7 @@ public class ProjectCreateConfirmServlet extends HttpServlet {
 
                 Projects_users pu = new Projects_users();
 
-                String user_id = request.getParameter("user_id");
+                String user_id = (String)request.getSession().getAttribute("user_id");
                 pu.setUser_id(user_id);
 
                 pu.setProject_id(project_id);

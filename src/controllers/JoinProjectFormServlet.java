@@ -32,7 +32,7 @@ public class JoinProjectFormServlet extends HttpServlet {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/project.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/project_join.jsp");
         rd.forward(request, response);
     }
 }

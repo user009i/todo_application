@@ -6,7 +6,6 @@
         <class>models.Todo</class>
         <class>models.Project</class>
         <class>models.Projects_users</class>
-        <class>models.Todos_users</class>
         <class>models.Todos_projects</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
