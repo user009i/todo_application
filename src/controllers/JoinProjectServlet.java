@@ -47,7 +47,7 @@ public class JoinProjectServlet extends HttpServlet {
             if(p != null) {
                 Projects_users pj = new Projects_users();
                 String project_id = request.getParameter("project_id");
-                String user_id = request.getParameter("user_id");
+                String user_id = (String)request.getSession().getAttribute("user_id");
 
                 pj.setProject_id(project_id);
                 pj.setUser_id(user_id);
@@ -67,7 +67,7 @@ public class JoinProjectServlet extends HttpServlet {
             }
 
             else {
-                request.setAttribute("flush", "このユーザIDは既に使用されています");
+                request.setAttribute("flush", "Projectが見つかりません");
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/project.jsp");
                 rd.forward(request, response);
             }

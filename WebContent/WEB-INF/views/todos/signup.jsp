@@ -26,7 +26,7 @@
                     <br>
 
                     <input type="hidden" name="_token" value="${_token}" />
-                    <button type="submit">作成する</button>
+                    <button type="submit">アカウントを作成する</button>
                 </form>
             </div>
             <div id="footer">

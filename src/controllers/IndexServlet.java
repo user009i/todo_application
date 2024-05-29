@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Projects_users;
 import models.Todo;
 import models.Todos_projects;
+import models.User;
 import utils.DBUtil;
 
 /**
@@ -51,9 +52,10 @@ public class IndexServlet extends HttpServlet {
             }
         }
 
-        List<Todo> all_todos_not_in_project = em.createNamedQuery("getAllMyTodos", Todo.class).setParameter("user_id", user_id).getResultList();
+        List<Todo> all_todos_not_in_project = em.createNamedQuery("getAllOnlyMyTodos", Todo.class).setParameter("user_id", user_id).getResultList();
 
         List<Todo> todos = new ArrayList<Todo>();
+        List<String> creators = new ArrayList<String>();
         for(Todo t : all_todos_in_project) {
             todos.add(t);
         }
@@ -63,10 +65,16 @@ public class IndexServlet extends HttpServlet {
 
         //tのソート実装
         todos.sort((Todo a, Todo b) -> a.getDeadline_at().compareTo(b.getDeadline_at()));
+        for(Todo t : todos) {
+            User us = em.find(User.class, t.getCreator());
+            creators.add(us.getUser_name());
+        }
+
 
         em.close();
 
         request.getSession().setAttribute("todos", todos);
+        request.getSession().setAttribute("creators", creators);
         //request.getSession().setAttribute("user_name", user_name);
 
 
