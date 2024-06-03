@@ -14,19 +14,24 @@
     </c:if>
     <body>
         <div id="wrapper">
+        <div id="Start">
+
             <div id="header">
                 <h1>TODO List</h1>
                 <h1>共有アプリケーション</h1>
             </div>
-            <div id="content">
+
+                <div id="content" class="Startbuton">
                 <div class="center-button">
-                    <button onclick="location.href='${pageContext.request.contextPath}/signup'">アカウント作成</button>
-                    <button onclick="location.href='${pageContext.request.contextPath}/login'">ログイン</button>
+                    <button class="SignUp" onclick="location.href='${pageContext.request.contextPath}/signup'">アカウント作成</button>
+                    <button class="Login" onclick="location.href='${pageContext.request.contextPath}/login'">ログイン</button>
                 </div>
             </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
             </div>
         </div>
+        </div>
+
     </body>
 </html>
