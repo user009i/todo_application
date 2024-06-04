@@ -6,7 +6,8 @@
     <head>
         <meta charset="UTF-8">
         <title>メイン画面</title>
-         <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+           <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+
     </head>
     <c:if test="${flush != null}">
             <div id="flush_message">
@@ -18,9 +19,7 @@
             <div id="header">
                 <h1>TODO List 共有アプリケーション</h1>
                 <div id="end">
-                <form action="logout" method="post" style="position: absolute; right: 0; top: 0;">
-                    <input type="submit" value="ログアウト">
-                </form>
+                    <button onclick="location.href='${pageContext.request.contextPath}/logout'">ログアウト</button>
                 </div>
                 <h3>${user_name} 様のページ</h3>
                 <button onclick="location.href='${pageContext.request.contextPath}/joinProjectForm'">プロジェクト参加</button>

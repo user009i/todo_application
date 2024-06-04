@@ -27,8 +27,6 @@
                 by T.Shimizu and R.Inoue
             </div>
         </div>
+        </div>
     </body>
 </html>
-
-
-

@@ -31,6 +31,9 @@ public class SignupServlet extends HttpServlet {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
+
+        request.setAttribute("_token", request.getSession().getId());
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/signup.jsp");
         rd.forward(request, response);
     }
