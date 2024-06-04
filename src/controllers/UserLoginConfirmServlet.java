@@ -49,7 +49,7 @@ public class UserLoginConfirmServlet extends HttpServlet {
             em.close();
 
             if(u == null) {
-                request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
+                request.setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
                 rd.forward(request, response);
@@ -70,14 +70,14 @@ public class UserLoginConfirmServlet extends HttpServlet {
                         response.sendRedirect(request.getContextPath() + "/index");
                     }
                     else {
-                        request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
+                        request.setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
 
                         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
                         rd.forward(request, response);
                     }
                 }
                 catch(NoSuchAlgorithmException e){
-                    request.getSession().setAttribute("flush", "エラーが発生しました");
+                    request.setAttribute("flush", "エラーが発生しました");
 
                     RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
                     rd.forward(request, response);
@@ -86,7 +86,7 @@ public class UserLoginConfirmServlet extends HttpServlet {
 
         }
         else {
-            request.getSession().setAttribute("flush", "ログインページからアクセスしてください");
+            request.setAttribute("flush", "ログインページからアクセスしてください");
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
             rd.forward(request, response);

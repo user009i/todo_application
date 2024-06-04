@@ -61,9 +61,7 @@ public class JoinProjectServlet extends HttpServlet {
 
                 request.setAttribute("_token", request.getSession().getId());
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
-                rd.forward(request, response);
-
+                response.sendRedirect(request.getContextPath() + "/index");
             }
 
             else {
