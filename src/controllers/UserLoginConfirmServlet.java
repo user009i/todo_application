@@ -67,10 +67,7 @@ public class UserLoginConfirmServlet extends HttpServlet {
                         request.getSession().setAttribute("user_password", u.getUser_password());
                         request.getSession().setAttribute("user_name", u.getUser_name());
 
-                        request.setAttribute("_token", request.getSession().getId());
-
-                        RequestDispatcher rd = request.getRequestDispatcher("/index");
-                        rd.forward(request, response);
+                        response.sendRedirect(request.getContextPath() + "/index");
                     }
                     else {
                         request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
