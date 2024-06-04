@@ -18,12 +18,14 @@
                 <h1>TODO List 共有アプリケーション</h1>
 
             </div>
-            <div id="content">
+            <div id="task_new_create_content">
                 <form action="${pageContext.request.contextPath}/createTodo" method="post">
-                    タスク名: <input type="text" name="content"><br>
-                    いつまでに: <input type="date" name="deadline_at"><br>
-                    プロジェクトID: <input type="text" name="project_id"><br>
-                    <input type="submit" value="作成する">
+                    タスク名: <input type="text" name="content" id="task"><br>
+                    いつまでに:<input type="date" name="deadline_at" id="untilwhen"><br>
+                    プロジェクトID: <input type="text" name="project_id" id="project_id"><br>
+                    <div id="task_new_create_box">
+                      <input type="submit" value="作成する" id="task_new_create">
+                    </div>
                 </form>
                 <a href="${pageContext.request.contextPath}/index" style="position: absolute; right: 0; bottom: 0;">戻る</a>
             </div>
