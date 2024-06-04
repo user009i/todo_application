@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <title>メイン画面</title>
            <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+
     </head>
     <c:if test="${flush != null}">
             <div id="flush_message">
