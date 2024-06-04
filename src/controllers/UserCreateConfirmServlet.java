@@ -79,7 +79,9 @@ public class UserCreateConfirmServlet extends HttpServlet {
                     response.sendRedirect("/WEB-INF/views/todos/start.jsp");
                 }
 
+                request.getSession().setAttribute("user_id", user_id);
                 request.getSession().setAttribute("user_name", user_name);
+                request.getSession().setAttribute("user_password", user_password);
 
                 response.sendRedirect(request.getContextPath() + "/index");
             }
