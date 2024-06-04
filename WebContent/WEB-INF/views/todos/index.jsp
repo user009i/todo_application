@@ -17,13 +17,13 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>TODO List 共有アプリケーション</h1>
-                <div id="end">
-                    <button onclick="location.href='${pageContext.request.contextPath}/logout'">ログアウト</button>
+                <div id="logoutbox">
+                    <button onclick="location.href='${pageContext.request.contextPath}/logout'" id="logout">ログアウト</button>
                 </div>
+                <h1>TODO List 共有アプリケーション</h1>
                 <h3>${user_name} 様のページ</h3>
-                <button onclick="location.href='${pageContext.request.contextPath}/joinProjectForm'">プロジェクト参加</button>
-                <button onclick="location.href='${pageContext.request.contextPath}/createProjectForm'">プロジェクト作成</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/joinProjectForm'" id="joinProject">プロジェクト参加</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/createProjectForm'" id="createProjectForm">プロジェクト作成</button>
             </div>
             <div id="content">
                 <ol>
@@ -37,7 +37,10 @@
                                     <c:when test="${todo.status == 0}">未着手</c:when>
                                     <c:when test="${todo.status == 1}">作業中</c:when>
                                     <c:otherwise>完了</c:otherwise>
-                                  </c:choose>
+                                  </c:choose>|<br/>
+
+                            <button onclick="location.href='${pageContext.request.contextPath}/'" id="start">着手</button></br>
+                            <button onclick="location.href='${pageContext.request.contextPath}/'" id="end">完了</button></br>
                         </li>
                     </c:forEach>
 
