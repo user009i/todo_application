@@ -13,11 +13,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
     </c:if>
-
-
-    <body>
-
-        <div id="login-page">
+       <div id="login-page">
             <div id="header">
                 <h1>アカウント作成画面</h1>
             </div>
@@ -32,8 +28,18 @@
                     <button type="submit" class="login-button">アカウントを作成する</button>
                 </form>
                 <a href="${pageContext.request.contextPath}/start" style="position: absolute; right: 0; bottom: 0;">戻る</a>
+            </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
-            </div>        
+            </div>
+        </div>
+    </body>
+
+            <div id="footer">
+                by T.Shimizu and R.Inoue
+            </div>
+        </div>
     </body>
 </html>
+
+
