@@ -16,7 +16,7 @@
         <div id="wrapper">
             <div id="header">
                 <h1>TODO List 共有アプリケーション</h1>
-                <a href="${pageContext.request.contextPath}/index" style="position: absolute; right: 0; bottom: 0;">戻る</a>
+
             </div>
             <div id="content">
                 <form action="${pageContext.request.contextPath}/createTodo" method="post">
@@ -25,6 +25,7 @@
                     プロジェクトID: <input type="text" name="project_id"><br>
                     <input type="submit" value="作成する">
                 </form>
+                <a href="${pageContext.request.contextPath}/index" style="position: absolute; right: 0; bottom: 0;">戻る</a>
             </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
