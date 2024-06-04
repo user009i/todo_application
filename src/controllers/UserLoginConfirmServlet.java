@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,34 +48,51 @@ public class UserLoginConfirmServlet extends HttpServlet {
 
             em.close();
 
-            String user_password = request.getParameter("user_password");
+            if(u == null) {
+                request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
 
-            try {
-                MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
-                byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
-
-                if(Arrays.equals(u.getUser_password(), user_password_enc)) {
-                    request.getSession().setAttribute("user_id", u.getUser_id());
-                    request.getSession().setAttribute("user_password", u.getUser_password());
-                    request.getSession().setAttribute("user_name", u.getUser_name());
-                    request.setAttribute("_token", request.getSession().getId());
-
-                    response.sendRedirect(request.getContextPath() + "/index");
-                }
-                else {
-                    request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
-                    response.sendRedirect(request.getContextPath() + "/login");
-                }
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
+                rd.forward(request, response);
             }
-            catch(NoSuchAlgorithmException e){
-                request.getSession().setAttribute("flush", "エラーが発生しました");
-                response.sendRedirect(request.getContextPath() + "/start");
+
+            else {
+                String user_password = request.getParameter("user_password");
+
+                try {
+                    MessageDigest sha3_256 = MessageDigest.getInstance("SHA3-256");
+                    byte[] user_password_enc = sha3_256.digest(user_password.getBytes());
+
+                    if(Arrays.equals(u.getUser_password(), user_password_enc)) {
+                        request.getSession().setAttribute("user_id", u.getUser_id());
+                        request.getSession().setAttribute("user_password", u.getUser_password());
+                        request.getSession().setAttribute("user_name", u.getUser_name());
+
+                        request.setAttribute("_token", request.getSession().getId());
+
+                        RequestDispatcher rd = request.getRequestDispatcher("/index");
+                        rd.forward(request, response);
+                    }
+                    else {
+                        request.getSession().setAttribute("flush", "ユーザID、パスワードが登録されたものと異なっています");
+
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
+                        rd.forward(request, response);
+                    }
+                }
+                catch(NoSuchAlgorithmException e){
+                    request.getSession().setAttribute("flush", "エラーが発生しました");
+
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
+                    rd.forward(request, response);
+                }
             }
 
         }
         else {
             request.getSession().setAttribute("flush", "ログインページからアクセスしてください");
-            response.sendRedirect(request.getContextPath() + "/login");
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/login.jsp");
+            rd.forward(request, response);
         }
     }
 

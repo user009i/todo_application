@@ -15,7 +15,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class ShowServlet
  */
-@WebServlet("/wip")
+@WebServlet("/WIP")
 public class WIPServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
 

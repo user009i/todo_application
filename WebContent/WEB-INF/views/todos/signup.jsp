@@ -20,9 +20,9 @@
             </div>
             <div id="content">
                 <form method="POST" action="${pageContext.request.contextPath}/userCreateConfirm">
-                    ユーザーID: <input type="text" name="user_id" id="user_id" value="${user.user_id}" /><br>
-                    名前:       <input type="text" name="user_name" id="user_name" value="${user.user_name}" /><br>
-                    パスワード: <input type="password" name="user_password" id="user_password" value="${user.user_password}" /><br>
+                    ユーザーID: <input type="text" name="user_id" id="user_id" /><br>
+                    名前:       <input type="text" name="user_name" id="user_name" /><br>
+                    パスワード: <input type="password" name="user_password" id="user_password" /><br>
                     <br>
 
                     <input type="hidden" name="_token" value="${_token}" />

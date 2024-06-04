@@ -1,80 +1,43 @@
 /* style.css */
 
-#loginPage body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #f0f0f0, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-#loginPage #wrapper {
-    width: 100%; /* 幅を100%に設定 */
-    margin: 0 auto;
-}
-
-#loginPage #header {
-    background-color: #333;
-    color: #fff;
-    padding: 5px 0;
-    text-align: center;
-    font-size: 1em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#loginPage #content {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-#loginPage .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#loginPage .login-form input[type="text"],
-#loginPage .login-form input[type="password"] {
-    width: 40%;
-    padding: 5px;
-    font-size: 0.5em;
-    margin-bottom: 10px;
-}
-
-#loginPage .login-button {
-    padding: 5px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#loginPage .login-button:hover {
-    background-color: #ddd;
-}
-
-#loginPage #footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: 0.8em;
-}
-
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #f0f0f0, #ffffff);
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+    }
+
+button {
+    width: 150px; /* ボタンの幅を200ピクセルに設定 */
+    height: 40px; /* ボタンの高さを50ピクセルに設定 */
+    font-size: 0.7em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
 }
+
+submit {
+    width: 150px; /* ボタンの幅を200ピクセルに設定 */
+    height: 40px; /* ボタンの高さを50ピクセルに設定 */
+    font-size: 0.7em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #808080;/*カーソルを合わせたときに色*/
+
+}
+
+#end {
+    Text-align: right;
+    margin-right: 20px;
+    margin-left:20px;
+    padding-right:20px;
+}
+
 
 #wrapper {
     width: 100%; /* 幅を100%に設定 */
@@ -82,11 +45,11 @@ body {
 }
 
 #header {
-    background-color: #333;
+    background-color: #8080ff;
     color: #fff;
     padding: 5px 0;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -104,15 +67,20 @@ body {
 }
 
 #content {
-    background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
     font-size: 1.2em;
+    display: flex; /* Flexboxを有効化 */
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
 }
+
 
 .center-button {
     display: flex;
-    justify-content: space-around; /* ボタンとボタンの間隔をさらに開けました */
+    margin: 100px 50px 50px 50px;
+    font-size: 1.2em;
 }
 
 .center-button button {
@@ -124,7 +92,7 @@ body {
 }
 
 #footer {
-    background-color: #333;
+    background-color: #8080ff;
     color: #fff;
     text-align: center;
     padding: 5px 0;
@@ -132,4 +100,145 @@ body {
     bottom: 0;
     width: 100%;
     font-size: 0.8em;
+}
+
+/* Todoリスト項目のスタイル */
+ol {
+    list-style: none; /* デフォルトのリストスタイルを無効化 */
+    padding: 0;
+    width: 100%; /* リストの幅を100%に設定 */
+}
+
+li {
+    border: 1px solid #ddd; /* 枠線を追加 */
+    padding: 10px; /* 内側の余白を設定 */
+    margin-bottom: 5px; /* 項目間の余白を設定 */
+    background-color: #f9f9f9; /* 背景色を設定 */
+}
+
+/* リスト項目のヘッダー（タイトル）部分のスタイル */
+li:first-child {
+    border-top: 2px solid #000; /* 最初の項目の上部に太い枠線を追加 */
+}
+
+/* リスト項目のフッター（最後）部分のスタイル */
+li:last-child {
+    border-bottom: 2px solid #000; /* 最後の項目の下部に太い枠線を追加 */
+}
+
+/* リスト項目内の詳細テキストのスタイル */
+li > br {
+    display: none; /* <br>タグを非表示にして、余計なスペースを削除 */
+}
+
+/* リスト項目内の詳細テキストを格子状に表示 */
+li > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列の均等な幅で表示 */
+    gap: 10px; /* 列間の余白を設定 */
+    align-items: center; /* 項目を中央揃え */
+}
+
+/* 各<span>要素に枠線を追加 */
+li > div > span {
+    border: 1px solid #eee; /* 薄いグレーの枠線を設定 */
+    padding: 5px; /* 内側の余白を設定 */
+    margin: -1px; /* 枠線が重ならないように調整 */
+    display: inline-block; /* インラインブロック要素として表示 */
+    width: calc(50% - 10px); /* 親要素の50%から余白分を引いた幅に設定 */
+    box-sizing: border-box; /* ボックスサイズを境界ボックスに設定 */
+}
+
+/* 最初の<span>要素の左側の枠線を太くする */
+li > div > span:first-child {
+    border-left: 2px solid #ddd;
+}
+
+/* 最後の<span>要素の右側の枠線を太くする */
+li > div > span:last-child {
+    border-right: 2px solid #ddd;
+}
+
+/* 上部の<span>要素の上側の枠線を太くする */
+li > div:first-child > span {
+    border-top: 2px solid #ddd;
+}
+
+/* 下部の<span>要素の下側の枠線を太くする */
+li > div:last-child > span {
+    border-bottom: 2px solid #ddd;
+}
+
+/*ログインページのCSS*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {/*フォームそのもの*/
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 500px;
+  margin: 100 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #c0c0c0;
+  width: 70%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #000040;
+  width: 70%;
+  border: 0;
+  padding: 7px;
+  color: #FFFFFF;
+  font-size: 20px;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #c0c0c0;
+}
+
+.login-button{
+    margin-top: 10px;
+}
+
+#loginPage .login-button:hover {
+    background-color: #808080;/*カーソルを合わせたときに色*/
+}
+
+.SignUp{
+    margin-right:60px;
+}
+
+.Startbuton {/*フォームそのもの*/
+  z-index: 1;
+  max-width: 500px;
+  margin: 100 auto 100px;
+  text-align: center;
+}
+
+.SignUp{
+
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.Login{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }

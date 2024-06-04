@@ -26,18 +26,20 @@
             </div>
             <div id="content">
                 <ol>
-                    <c:forEach var="todo" items="${todos}" varStatus="status">
-                        <li>
+                    <li>
+                        <c:forEach var="todo" items="${todos}" varStatus="status">
                             内容: ${todo.content} <br/>
                             締め切り: ${todo.deadline_at} <br/>
                             作成者: ${creators[status.index]} <br/>
                             状況: <c:choose>
-                                    <c:when test="${todo.status == 0}">未着手</c:when>
-                                    <c:when test="${todo.status == 1}">作業中</c:when>
-                                    <c:otherwise>完了</c:otherwise>
+                                      <c:when test="${todo.status == 0}">未着手</c:when>
+                                      <c:when test="${todo.status == 1}">作業中</c:when>
+                                      <c:otherwise>完了</c:otherwise>
                                   </c:choose>
-                        </li>
-                    </c:forEach>
+                        </c:forEach>
+                        <button onclick="location.href='${pageContext.request.contextPath}/WIP?todo_id=${todo.todo_id}'">作業開始</button>
+                        <button onclick="location.href='${pageContext.request.contextPath}/done?todo_id=${todo.todo_id}''">完了</button>
+                    </li>
                 </ol>
                 <button onclick="location.href='${pageContext.request.contextPath}/new'">タスクを作成する</button>
             </div>

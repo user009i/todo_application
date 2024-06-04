@@ -38,15 +38,16 @@ public class UserCreateConfirmServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //String _token = request.getParameter("_token");
-        //if(_token != null && _token.equals(request.getSession().getId())) {
+        String _token = request.getParameter("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
             // 該当のIDのメッセージ1件のみをデータベースから取得
             User u = em.find(User.class, request.getParameter("user_id"));
 
             if(u != null) {
-                request.setAttribute("flush", "このユーザIDは既に使用されています");
+                request.getSession().setAttribute("flush", "このユーザIDは既に使用されています");
+
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/signup.jsp");
                 rd.forward(request, response);
             }
@@ -75,23 +76,22 @@ public class UserCreateConfirmServlet extends HttpServlet {
                 catch(NoSuchAlgorithmException e){
                     em.close();
                     request.setAttribute("flush", "エラーが発生しました");
-                    response.sendRedirect(request.getContextPath() + "/start");
+                    response.sendRedirect("/WEB-INF/views/todos/start.jsp");
                 }
 
                 request.getSession().setAttribute("user_name", user_name);
 
-                request.setAttribute("_token", request.getSession().getId());
-
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
-                rd.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/index");
             }
 
 
-        //}
-        /*else {
+        }
+        else {
             request.getSession().setAttribute("flush", "アカウント作成ページからアクセスしてください");
-            response.sendRedirect(request.getContextPath() + "/start");
-        }*/
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/start.jsp");
+            rd.forward(request, response);
+        }
     }
 
 }
