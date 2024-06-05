@@ -50,6 +50,14 @@ submit {
 #start{
     margin-right: 15px;
     margin-left: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+#end{
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
 }
 
 #task{
@@ -70,10 +78,6 @@ submit {
     text-align: center;
     width: 100px;
     height: 28px;
-}
-
-#end{
-    margin-right: 20px;
 }
 
 #task_new_create_box{
@@ -128,6 +132,16 @@ submit {
     top: 50%;
     left: 50%;
     margin: 100 -300;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
+}
+
+#index_contents {
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    display: flex; /* Flexboxを有効化 */
     flex-direction: column; /* 要素を縦に並べる */
     align-items: center; /* 水平方向の中央揃え */
     justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
@@ -295,6 +309,8 @@ li > div:last-child > span {
   margin: 100 auto 100px;
   text-align: center;
 }
+
+
 
 .SignUp{
 
