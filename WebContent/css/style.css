@@ -1,321 +1,38 @@
-/* style.css */
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>初期画面</title>
+        <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <c:if test="${flush != null}">
+            <div id="flush_message">
+                <c:out value="${flush}"></c:out>
+            </div>
+    </c:if>
+    <body>
+        <div id="wrapper">
+        <div id="Start">
 
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
-    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
-    }
+            <div id="header">
+                <h1>TODO List</h1>
+                <h1>共有アプリケーション</h1>
+            </div>
 
-button {
-    width: 150px; /* ボタンの幅を200ピクセルに設定 */
-    height: 40px; /* ボタンの高さを50ピクセルに設定 */
-    font-size: 0.7em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+                <div id="content" class="Startbuton">
+                <div class="center-button">
+                    <button class="SignUp" onclick="location.href='${pageContext.request.contextPath}/signup'">アカウント作成</button>
+                    <button class="Login" onclick="location.href='${pageContext.request.contextPath}/login'">ログイン</button>
+                </div>
+            </div>
+            <div id="footer">
+                by T.Shimizu and R.Inoue
+            </div>
+        </div>
+        </div>
 
-}
-
-submit {
-    width: 150px; /* ボタンの幅を200ピクセルに設定 */
-    height: 40px; /* ボタンの高さを50ピクセルに設定 */
-    font-size: 0.7em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #808080;/*カーソルを合わせたときに色*/
-
-}
-
-#logoutbox{
-    text-align: right;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-#logout {
-    text-align: center;
-    width: 100px; /* ボタンの幅を200ピクセルに設定 */
-    height: 30px; /* ボタンの高さを50ピクセルに設定 */
-
-}
-
-#joinProject{
-    margin-right: 20px;
-    margin-bottom: 15px;
-}
-
-#start{
-    margin-right: 15px;
-    margin-left: 10px;
-    width: 80px;
-    height: 30px;
-}
-
-#end{
-    margin-right: 20px;
-    width: 80px;
-    height: 30px;
-}
-
-#task{
-    margin-left: 56px;
-
-}
-
-#untilwhen{
-    margin-left: 105px;
-    
-}
-
-#project_id{
-    
-}
-
-#task_new_create{
-    text-align: center;
-    width: 100px;
-    height: 28px;
-}
-
-#task_new_create_box{
-    text-align: center;
-    margin-top: 20px;
-}
-
-#task_new_create_content{
-    background-color: rgba(255,255,255,0.3);
-    padding: 20px;
-    font-size: 1.2em;
-    height: 180px;
-    padding-top: 50px;
-    text-align: center; 
-    flex-direction: column; /* 要素を縦に並べる */
-    align-items: center; /* 水平方向の中央揃え */
-    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
-}
-
-#wrapper {
-    width: 100%; /* 幅を100%に設定 */
-    margin: 0 auto;
-}
-
-#header {
-    background-color: rgba(24,235,249,0.3); /* 背景色を設定 */
-    color: #fff;
-    padding: 5px 0;
-    text-align: center;
-    font-size: 1em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#header a,
-#header form {
-    position: absolute;  /* 追加：絶対位置指定 */
-    bottom: 0;
-    left: 0;
-    margin-left: 10px;  /* 追加：左端からのマージン */
-}
-
-#header form {
-    margin-left: 60px;  /* 追加：「戻る」ボタンからのマージン */
-}
-
-#content {
-    padding: 20px;
-    width: 700px;
-    font-size: 1.2em;
-    display: flex; /* Flexboxを有効化 */
-    top: 50%;
-    left: 50%;
-    margin: 100 -300;
-    flex-direction: column; /* 要素を縦に並べる */
-    align-items: center; /* 水平方向の中央揃え */
-    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
-}
-
-#index_contents {
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    display: flex; /* Flexboxを有効化 */
-    flex-direction: column; /* 要素を縦に並べる */
-    align-items: center; /* 水平方向の中央揃え */
-    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
-}
-
-
-
-
-.center-button {
-    display: flex;
-    margin: 100px 50px 50px 50px;
-    font-size: 1.2em;
-}
-
-.center-button button {
-    transition: background-color 0.3s ease;
-}
-
-.center-button button:hover {
-    background-color: #ddd;
-}
-
-#footer {
-    background-color: rgba(24,235,249,0.3); /* 背景色を設定 */
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: 0.8em;
-}
-
-/* Todoリスト項目のスタイル */
-ol {
-    list-style: none; /* デフォルトのリストスタイルを無効化 */
-    padding: 0;
-    width: 100%; /* リストの幅を100%に設定 */
-}
-
-li {
-    border: 1px solid #ddd; /* 枠線を追加 */
-    padding: 10px; /* 内側の余白を設定 */
-    margin-bottom: 5px; /* 項目間の余白を設定 */
-    background-color: rgba(255,255,255,0.8); /* 背景色を設定 */
-    opacity: 0.8;/*背景を透明に*/
-}
-
-/* リスト項目のヘッダー（タイトル）部分のスタイル */
-li:first-child {
-    border-top: 2px solid #000; /* 最初の項目の上部に太い枠線を追加 */
-}
-
-/* リスト項目のフッター（最後）部分のスタイル */
-li:last-child {
-    border-bottom: 2px solid #000; /* 最後の項目の下部に太い枠線を追加 */
-}
-
-/* リスト項目内の詳細テキストのスタイル */
-li > br {
-    display: none; /* <br>タグを非表示にして、余計なスペースを削除 */
-}
-
-/* リスト項目内の詳細テキストを格子状に表示 */
-li > div {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2列の均等な幅で表示 */
-    gap: 10px; /* 列間の余白を設定 */
-    align-items: center; /* 項目を中央揃え */
-}
-
-/* 各<span>要素に枠線を追加 */
-li > div > span {
-    border: 1px solid #eee; /* 薄いグレーの枠線を設定 */
-    padding: 5px; /* 内側の余白を設定 */
-    margin: -1px; /* 枠線が重ならないように調整 */
-    display: inline-block; /* インラインブロック要素として表示 */
-    width: calc(50% - 10px); /* 親要素の50%から余白分を引いた幅に設定 */
-    box-sizing: border-box; /* ボックスサイズを境界ボックスに設定 */
-}
-
-/* 最初の<span>要素の左側の枠線を太くする */
-li > div > span:first-child {
-    border-left: 2px solid #ddd;
-}
-
-/* 最後の<span>要素の右側の枠線を太くする */
-li > div > span:last-child {
-    border-right: 2px solid #ddd;
-}
-
-/* 上部の<span>要素の上側の枠線を太くする */
-li > div:first-child > span {
-    border-top: 2px solid #ddd;
-}
-
-/* 下部の<span>要素の下側の枠線を太くする */
-li > div:last-child > span {
-    border-bottom: 2px solid #ddd;
-}
-
-/*ログインページのCSS*/
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-.form {/*フォームそのもの*/
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 500px;
-  margin: 100 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-.form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #c0c0c0;
-  width: 70%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #000040;
-  width: 70%;
-  border: 0;
-  padding: 7px;
-  color: #FFFFFF;
-  font-size: 20px;
-  cursor: pointer;
-}
-.form button:hover,.form button:active,.form button:focus {
-  background: #c0c0c0;
-}
-
-.login-button{
-    margin-top: 10px;
-    width: 200px;
-}
-
-#loginPage .login-button:hover {
-    background-color: #808080;/*カーソルを合わせたときに色*/
-}
-
-.SignUp{
-    margin-right:60px;
-}
-
-.Startbuton {/*フォームそのもの*/
-  z-index: 1;
-  max-width: 500px;
-  margin: 100 auto 100px;
-  text-align: center;
-}
-
-
-
-.SignUp{
-
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.Login{
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
+    </body>
+</html>
