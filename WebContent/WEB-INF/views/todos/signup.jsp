@@ -13,11 +13,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
     </c:if>
-
-
-    <body>
-
-        <div id="login-page">
+       <div id="login-page">
             <div id="header">
                 <h1>アカウント作成画面</h1>
             </div>
@@ -38,4 +34,12 @@
             </div>
         </div>
     </body>
+
+            <div id="footer">
+                by T.Shimizu and R.Inoue
+            </div>
+        </div>
+    </body>
 </html>
+
+

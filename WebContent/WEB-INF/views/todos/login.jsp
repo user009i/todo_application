@@ -27,7 +27,7 @@
                     <input type="hidden" name="_token" value="${_token}" />
                     <button type="submit" class="login-button">ログイン</button>
                 </form>
-                <a href="${pageContext.request.contextPath}/start" style="position: absolute; right: 0; bottom: 0;">戻る</a>
+                <a href="${pageContext.request.contextPath}/start" style="position: absolute; right: 0; bottom: 0;" id="back">戻る</a>
             </div>
 
             <div id="footer">
