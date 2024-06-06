@@ -86,7 +86,6 @@ public class UserCreateConfirmServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/index");
             }
 
-
         }
         else {
             request.getSession().setAttribute("flush", "アカウント作成ページからアクセスしてください");

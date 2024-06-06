@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Project;
 import models.Projects_users;
 import models.Todo;
 import models.Todos_projects;
@@ -42,8 +43,10 @@ public class IndexServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             String user_id = (String)request.getSession().getAttribute("user_id");
+            //自身が参加しているProjectのIDリスト
             List<Projects_users> all_projects_id = em.createNamedQuery("getAllMyProjects_id", Projects_users.class).setParameter("user_id", user_id).getResultList();
 
+            //自身が参加しているProjectのIDリストから、Todoのリストを作成
             List<Todo> all_todos_in_project = new ArrayList<Todo>();
             for(Projects_users pid : all_projects_id) {
                 List<Todos_projects> todos_in_project = em.createNamedQuery("getAllInTheProjectTodos", Todos_projects.class).setParameter("project_id", pid.getProject_id()).getResultList();
@@ -54,10 +57,12 @@ public class IndexServlet extends HttpServlet {
                 }
             }
 
-            List<Todo> all_todos_not_in_project = em.createNamedQuery("getAllOnlyMyTodos", Todo.class).setParameter("user_id", user_id).getResultList();
+            List<Todo> all_todos_not_in_project = em.createNamedQuery("getAllNotInProjectsTodos", Todo.class).getResultList();
 
             List<Todo> todos = new ArrayList<Todo>();
             List<String> creators = new ArrayList<String>();
+            List<String> projects = new ArrayList<String>();
+
             for(Todo t : all_todos_in_project) {
                 todos.add(t);
             }
@@ -65,11 +70,22 @@ public class IndexServlet extends HttpServlet {
                 todos.add(t);
             }
 
-            //tのソート実装
+            //todosのソート実装
             todos.sort((Todo a, Todo b) -> a.getDeadline_at().compareTo(b.getDeadline_at()));
             for(Todo t : todos) {
                 User us = em.find(User.class, t.getCreator());
                 creators.add(us.getUser_name());
+                if(t.getIn_project()) {
+                    List<Todos_projects> p = em.createNamedQuery("getAllProjects", Todos_projects.class).setParameter("todo_id", t.getTodo_id()).getResultList();
+                    if(p.size() == 1) {
+                        Project pr= em.find(Project.class, p.get(0).getProject_id());
+                        projects.add(pr.getProject_name());
+                    }
+                }
+                else {
+                    projects.add(null);
+                }
+
             }
 
 
@@ -77,6 +93,7 @@ public class IndexServlet extends HttpServlet {
 
             request.getSession().setAttribute("todos", todos);
             request.getSession().setAttribute("creators", creators);
+            request.getSession().setAttribute("projects", projects);
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/todos/index.jsp");
             rd.forward(request, response);

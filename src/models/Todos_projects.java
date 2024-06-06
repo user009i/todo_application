@@ -5,14 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@NamedQuery(
-        name = "getAllInTheProjectTodos",
-        query = "SELECT t FROM Todos_projects AS t WHERE t.project_id = :project_id"
-)
+
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllInTheProjectTodos",
+            query = "SELECT t FROM Todos_projects AS t WHERE t.project_id = :project_id"
+    ),
+    @NamedQuery(
+            name = "getAllProjects",
+            query = "SELECT p FROM Todos_projects AS p WHERE p.todo_id = :todo_id"
+    )
+})
 @Table(name = "Todos_projects")
 public class Todos_projects {
     @Id

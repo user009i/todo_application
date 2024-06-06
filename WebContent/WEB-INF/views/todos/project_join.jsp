@@ -20,7 +20,7 @@
                      <p>プロジェクトID</p>
                      <input type="text" name="project_id" placeholder="project_id"><br>
                     <br>
-                    <button type="submit">プロジェクトに参加</button>
+                    <button type="submit">参加する</button>
                 </form>
             </div>
             <div id="footer">

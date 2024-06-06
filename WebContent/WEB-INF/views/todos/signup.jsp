@@ -29,11 +29,13 @@
                     <br>
 
                     <input type="hidden" name="_token" value="${_token}" />
-                    <button type="submit" class="login-button">アカウントを作成する</button>
+                    <button type="submit" class="login-button">作成する</button>
                 </form>
                 <a href="${pageContext.request.contextPath}/start" style="position: absolute; right: 0; bottom: 0;">戻る</a>
+            </div>
             <div id="footer">
                 by T.Shimizu and R.Inoue
-            </div>        
+            </div>
+        </div>
     </body>
 </html>

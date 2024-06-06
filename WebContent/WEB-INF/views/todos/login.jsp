@@ -18,7 +18,7 @@
             <div id="header">
                 <h1>ログイン画面</h1>
             </div>
-            <div id="content" class="form">
+            <div id="content_login" class="form">
                 <form action="${pageContext.request.contextPath}/userLoginConfirm" method="post" class="login-form">
                     <input type="text" id="user_id" name="user_id" value="${user.user_id}" placeholder="username"><br>
 

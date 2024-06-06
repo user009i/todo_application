@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-            name = "getAllOnlyMyTodos",
-            query = "SELECT t FROM Todo AS t WHERE t.creator = :user_id AND t.in_project = false"
+            name = "getAllNotInProjectsTodos",
+            query = "SELECT t FROM Todo AS t WHERE t.in_project = false"
     )
 })
 

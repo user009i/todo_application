@@ -17,15 +17,15 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>TODO List 共有アプリケーション</h1>
-                <div id="end">
-                    <button onclick="location.href='${pageContext.request.contextPath}/logout'">ログアウト</button>
+                <div id="logoutbox">
+                    <button onclick="location.href='${pageContext.request.contextPath}/logout'" id="logout">ログアウト</button>
                 </div>
+                <h1>TODO List 共有アプリケーション</h1>
                 <h3>${user_name} 様のページ</h3>
-                <button onclick="location.href='${pageContext.request.contextPath}/joinProjectForm'">プロジェクト参加</button>
-                <button onclick="location.href='${pageContext.request.contextPath}/createProjectForm'">プロジェクト作成</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/joinProjectForm'" id="joinProject">プロジェクト参加</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/createProjectForm'" id="createProjectForm">プロジェクト作成</button>
             </div>
-            <div id="content">
+            <div id="content_index">
                 <ol>
 
                     <c:forEach var="todo" items="${todos}" varStatus="status">
@@ -38,6 +38,22 @@
                                     <c:when test="${todo.status == 1}">作業中</c:when>
                                     <c:otherwise>完了</c:otherwise>
                                   </c:choose>
+                            <c:choose>
+                                <c:when test="${todo.in_project == true}">
+                                     | プロジェクト: ${projects[status.index]} <br/>
+                                </c:when>
+                            </c:choose>
+
+                            <c:choose>
+                                <c:when test="${todo.creator == user_id}">
+                                    <form method="POST" action="${pageContext.request.contextPath}/WIP?todo_id=${todo.todo_id}">
+                                        <button type="submit" class="WIP-button">着手</button>
+                                    </form>
+                                    <form method="POST" action="${pageContext.request.contextPath}/done?todo_id=${todo.todo_id}">
+                                        <button type="submit" class="done-button">完了</button>
+                                    </form>
+                                </c:when>
+                            </c:choose>
                         </li>
                     </c:forEach>
 

@@ -9,7 +9,6 @@ body {
     background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
     background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
     }
 
 button {
@@ -31,13 +30,77 @@ submit {
 
 }
 
-#end {
-    Text-align: right;
+#logoutbox{
+    text-align: right;
     margin-right: 20px;
-    margin-left:20px;
-    padding-right:20px;
+    margin-top: 10px;
+}
+#logout {
+    text-align: center;
+    width: 100px; /* ボタンの幅を200ピクセルに設定 */
+    height: 30px; /* ボタンの高さを50ピクセルに設定 */
+
 }
 
+#joinProject{
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+#start{
+    margin-right: 15px;
+    margin-left: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+#end{
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
+}
+
+#task{
+    margin-left: 56px;
+
+}
+
+#untilwhen{
+    margin-left: 48px;
+    width: 177px
+}
+
+#project_id{
+
+}
+
+#task_new_create{
+    text-align: center;
+    width: 100px;
+    height: 28px;
+}
+
+#task_new_create_box{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#flush_message{
+    color: rgb(255, 255, 128);
+    font-size: large;
+}
+
+#task_new_create_content{
+    background-color: rgba(255,255,255,0.3);
+    padding: 20px;
+    font-size: 1.2em;
+    height: 180px;
+    padding-top: 50px;
+    text-align: center;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
+}
 
 #wrapper {
     width: 100%; /* 幅を100%に設定 */
@@ -45,7 +108,7 @@ submit {
 }
 
 #header {
-    background-color: #8080ff;
+    background-color: rgba(24,235,249,0.3); /* 背景色を設定 */
     color: #fff;
     padding: 5px 0;
     text-align: center;
@@ -68,6 +131,43 @@ submit {
 
 #content {
     padding: 20px;
+    width: 100vw;
+    font-size: 1.2em;
+    display: flex; /* Flexboxを有効化 */
+    top: 50%;
+    /* left: 50%; */
+    margin: auto;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
+}
+
+#content_login {
+    padding: 20px;
+    width: 700px;
+    font-size: 1.2em;
+    display: flex; /* Flexboxを有効化 */
+    top: 50%;
+    margin: auto;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
+}
+
+#content_index {
+    width: 100vw;
+    font-size: 1.2em;
+    display: flex; /* Flexboxを有効化 */
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
+}
+
+#index_contents {
+    padding: 20px;
     margin-bottom: 20px;
     font-size: 1.2em;
     display: flex; /* Flexboxを有効化 */
@@ -75,6 +175,8 @@ submit {
     align-items: center; /* 水平方向の中央揃え */
     justify-content: center; /* 垂直方向の中央揃え（必要に応じて） */
 }
+
+
 
 
 .center-button {
@@ -92,7 +194,7 @@ submit {
 }
 
 #footer {
-    background-color: #8080ff;
+    background-color: rgba(24,235,249,0.3); /* 背景色を設定 */
     color: #fff;
     text-align: center;
     padding: 5px 0;
@@ -112,8 +214,11 @@ ol {
 li {
     border: 1px solid #ddd; /* 枠線を追加 */
     padding: 10px; /* 内側の余白を設定 */
+    width: 100vw;
     margin-bottom: 5px; /* 項目間の余白を設定 */
-    background-color: #f9f9f9; /* 背景色を設定 */
+    background-color: rgba(255,255,255,0.8); /* 背景色を設定 */
+    opacity: 0.8;/*背景を透明に*/
+    display: flex;
 }
 
 /* リスト項目のヘッダー（タイトル）部分のスタイル */
@@ -183,7 +288,7 @@ li > div:last-child > span {
   z-index: 1;
   background: #FFFFFF;
   max-width: 500px;
-  margin: 100 auto 100px;
+  margin: auto;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -218,6 +323,20 @@ li > div:last-child > span {
 
 .login-button{
     margin-top: 10px;
+    width: 200px;
+}
+
+.WIP-button{
+    margin-right: 15px;
+    margin-left: 10px;
+    width: 80px;
+    height: 30px;
+}
+
+.done-button{
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
 }
 
 #loginPage .login-button:hover {
@@ -231,9 +350,11 @@ li > div:last-child > span {
 .Startbuton {/*フォームそのもの*/
   z-index: 1;
   max-width: 500px;
-  margin: 100 auto 100px;
+  margin: auto;
   text-align: center;
 }
+
+
 
 .SignUp{
 

@@ -30,32 +30,18 @@ public class WIPServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-                EntityManager em = DBUtil.createEntityManager();
-                em.getTransaction().begin();
+        EntityManager em = DBUtil.createEntityManager();
+        em.getTransaction().begin();
 
-                Todo t = em.find(Todo.class, request.getParameter("todo_id"));
+        Todo t = em.find(Todo.class, Long.parseLong(request.getParameter("todo_id")));
 
+        int status = 1;
+        t.setStatus(status);
 
-                int status = 1;
-                t.setStatus(status);
+        em.getTransaction().commit();
+        request.setAttribute("flush", "Todoの着手を開始しました");
+        em.close();
 
-
-                // indexのページにリダイレクト
-                response.sendRedirect(request.getContextPath() + "/index");
-
-                em.getTransaction().begin();
-                em.getTransaction().commit();
-                request.setAttribute("flush", "Todoの登録が完了しました。");
-                em.close();
-
-                response.sendRedirect(request.getContextPath() + "/index");
-
-        }
-        else {
-            request.setAttribute("flush", "Todo作成ボタンからアクセスしてください");
-            response.sendRedirect(request.getContextPath() + "/start");
-        }
+        response.sendRedirect(request.getContextPath() + "/index");
     }
 }
